@@ -26,7 +26,23 @@ var albumMarconi = {
     { title: 'Can you hear me now?', duration: '3:14' },
     { title: 'Wrong phone number', duration: '2:15'}
   ]
- };
+};
+
+var albumQueen = {
+  title: 'News of the World',
+  artist: 'Queen',
+  label: 'EMI',
+  year: '1977',
+  albumArtUrl: 'assets/images/album_covers/queen.png',
+  songs: [
+    { title: 'We Will Rock You', duration: '2:01' },
+    { title: 'We Are The Champions', duration: '2:59' },
+    { title: 'Sheer Heart Attack', duration: '3:26' },
+    { title: 'All Dead, All Dead', duration: '3:10' },
+    { title: 'Spread Your Wings', duration: '4:34' },
+    { title: 'Fight from the Inside', duration: '3:03' },
+  ]
+};
 
 var createSongRow = function(songNumber, songName, songLength) {
      var template =
@@ -40,11 +56,12 @@ var createSongRow = function(songNumber, songName, songLength) {
   return template;
 };
 
+var albumImage = document.getElementsByClassName('album-cover-art')[0];
+
 var setCurrentAlbum = function(album) {
   var albumTitle = document.getElementsByClassName('album-view-title')[0];
   var albumArtist = document.getElementsByClassName('album-view-artist')[0];
   var albumReleaseInfo = document.getElementsByClassName('album-view-release-info')[0];
-  var albumImage = document.getElementsByClassName('album-cover-art')[0];
   var albumSongList = document.getElementsByClassName('album-view-song-list')[0];
   
   albumTitle.firstChild.nodeValue = album.title;
@@ -59,6 +76,15 @@ var setCurrentAlbum = function(album) {
   }
 };
 
+var albums = [albumMarconi, albumPicasso, albumQueen];
+var index = 0;
+
 window.onload = function() {
-  setCurrentAlbum(albumPicasso)
-}
+  albumImage.addEventListener('click', function(event){
+    setCurrentAlbum(albums[index]);
+    index++;
+    if (index == albums.length) {
+      index = 0;
+    }
+  });
+};
