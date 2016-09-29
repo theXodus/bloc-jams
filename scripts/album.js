@@ -144,9 +144,8 @@ var trackIndex = function(album, song) {
 //  $lastSongNumberCell.html(lastSongNumber);   
 //};
 
-var nextPrevSong = function(button) {
-  
-  if (button === $previousButton) {
+var nextPrevSong = function() {  
+  if (this.className == 'previous') {
     var getLastSongNumber = function(index) {
         return index == (currentAlbum.songs.length - 1) ? 1 : index + 2;
     };
