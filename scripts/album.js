@@ -173,8 +173,7 @@ var previousSong = function() {
 };
 
 var togglePlayFromPlayerBar = function() {
-  var currentlyPlayingCell = getSongNumberCell(currentlyPlayingSongNumber);
-  if (currentSoundFile.isPaused()) {
+g  if (currentSoundFile.isPaused()) {
     $(currentlyPlayingCell).html(pauseButtonTemplate);
     $('.main-controls .play-pause').html(playerBarPauseButton);
     currentSoundFile.play();
