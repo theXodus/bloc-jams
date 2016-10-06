@@ -203,7 +203,8 @@ var updateSeekBarWhileSongPlays = function() {
     currentSoundFile.bind('timeupdate', function(event) {
       var seekBarFillRatio = this.getTime() / this.getDuration();
       var $seekBar = $('.seek-control .seek-bar');
- 
+      setCurrentTimeInPlayerBar(this.getTime());
+      setTotalTimeInPlayerBar(this.getDuration())
       updateSeekPercentage($seekBar, seekBarFillRatio);
     });
   }
@@ -260,6 +261,23 @@ var setupSeekBars = function() {
       $(document).unbind('mouseup.thumb');
     });
   });
+};
+
+var setCurrentTimeInPlayerBar = function(currentTime) {
+  $('.current-time').text(filterTimeCode(currentTime));
+};
+
+var setTotalTimeInPlayerBar = function(totalTime) {
+  $('.total-time').text(filterTimeCode(totalTime));
+};
+
+var filterTimeCode = function(timeInSeconds) {
+  timeInSeconds = parseInt(timeInSeconds)
+  
+  var min = Math.floor(timeInSeconds / 60);
+  var sec = Math.floor(timeInSeconds % 60);
+  
+  return min + ":" + ('0' + sec).slice(-2)
 };
 
 // Album buttom templates
